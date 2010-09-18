@@ -10,7 +10,7 @@ inspired by Scheme Interpreter "Gauche" <practical-scheme.net>
 
 (in-package :interpolate)
 
-(defun string-interpolate% (str)
+(defun %string-interpolate (str)
   (labels ((rec (in acc)
 	     (let ((c (read-char in nil)))
 	       (cond ((null c) (list (get-output-stream-string acc)))
@@ -30,7 +30,7 @@ inspired by Scheme Interpreter "Gauche" <practical-scheme.net>
 
 (defun string-interpolate (str)
 (if (stringp str)
-    (string-interpolate% str)
+    (%string-interpolate str)
   (error "malformed string-interpolate: ~s"
 	 `(string-interpolate ,str))))
 
